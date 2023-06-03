@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Age in Seconds</title>
+    <!-- Styling for the client UI -->
+    <style>
+    h1 {
+        color: #FFFFFF;
+        font-family: system-ui;
+        margin-left: 20px;
+    }
+    body {
+        background-color: #222629;
+    }
+    label {
+        color: #86C232;
+        font-family: system-ui;
+        font-size: 20px;
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+    button {
+        background-color: #86C232;
+        border-color: #86C232;
+        color: #FFFFFF;
+        font-family: system-ui;
+        font-size: 20px;
+        font-weight: bold;
+        margin-left: 30px;
+        margin-top: 20px;
+        width: 140px;
+    }
+    input {
+        color: #222629;
+        font-family: system-ui;
+        font-size: 20px;
+        margin-left: 10px;
+        margin-top: 20px;
+        width: 100px;
+    }
+    </style>
+    <script>
+        // callAPI function that takes the base number (age) as a parameter
+        var callAPI = (base) => {
+            // Instantiate a headers object
+            var myHeaders = new Headers();
+            // Add content type header to the object
+            myHeaders.append("Content-Type", "application/json");
+            // Using built-in JSON utility package, turn object to string and store it in a variable
+            var raw = JSON.stringify({"base": base});
+            // Create a JSON object with parameters for API call and store it in a variable
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+            // Make API call with parameters and use promises to get response
+            fetch("https://aruuzg1iak.execute-api.ap-south-1.amazonaws.com/dev", requestOptions)
+            .then(response => response.text())
+            .then(result => alert(JSON.parse(result).body))
+            .catch(error => console.log('error', error));
+        }
+    </script>
+</head>
+<body>
+    <h1 align="center">AGE IN SECONDS</h1>
+    <form align="center">
+        <label>Enter your age:</label>
+        <input type="text" id="age">
+        <!-- Set button onClick method to call the function we defined passing the input value as a parameter -->
+        <button type="button" onclick="callAPI(document.getElementById('age').value)">CALCULATE</button>
+    </form>
+</body>
+</html>
