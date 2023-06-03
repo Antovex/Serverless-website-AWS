@@ -8,3 +8,4 @@ then to run the conversion python script I've used AWS Lamda function which is i
 In addition to calculating the data, the Lamda function also sends the input data to a DynamoDB ( using IAM role to access it ) which saves the input values into a non-relational database.
 
 # Architecture
+![alt text](https://github.com/Antovex/Serverless-website-AWS/blob/main/AWS-Your-Age-in-seconds-architecture.png?raw=true)
